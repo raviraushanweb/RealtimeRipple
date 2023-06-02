@@ -101,3 +101,17 @@ dist
 # Replit
 .replit
 replit.nix
+
+# Videos
+*.mp4
+*.avi
+*.mkv
+*.flv
+*.vob
+*.ogv
+*.ogg
+*.drc
+*.gif
+*.gifv
+*.mng
+*.mts

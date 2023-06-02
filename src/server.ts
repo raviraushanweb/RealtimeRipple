@@ -6,6 +6,7 @@ import uploaderRoutes from "./routes/uploader";
 import converterRoutes from "./routes/converter";
 import streamRoutes from "./routes/stream";
 import { chatController } from './controllers';
+import errorHandler from './middlewares/errorHandler';
 
 const app: Express = express();
 
@@ -23,6 +24,8 @@ app.use("/streamer", streamRoutes);
 
 const server = http.createServer(app);
 chatController.initialiseChatServer(server);
+
+app.use(errorHandler)
 
 server.listen(APP_PORT, () => {
   console.log(`Server is running in http://localhost:${APP_PORT}`)

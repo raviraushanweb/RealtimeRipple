@@ -10,6 +10,8 @@ const converterController = {
   ): Promise<void> {
     try {
       const videoPath = "public/videos/" + req.params.filename;
+      const outputFilename =
+			"converted-" + path.parse(req.params.filename).name + ".mp4";
       const outputVideoPath =
         "public/converted/converted-" +
         path.parse(req.params.filename).name +
@@ -17,18 +19,27 @@ const converterController = {
       // ffmpeg.setFfmpegPath(path.join(__dirname, 'path/to/your/ffmpeg'));
 
       ffmpeg(videoPath)
-        .format("mp4")
-        .outputOptions("-preset ultrafast")
-        .output(outputVideoPath)
-        .on("end", function () {
-          // console.log("Video conversion finished");
-        })
-        .on("error", function (err: Error) {
-          // console.log("An error occurred during video conversion: " +err.message);
-        })
-        .run();
-
-      res.status(200).json({ message: "Video conversion started" });
+			.format("mp4")
+			.outputOptions("-preset ultrafast")
+			.output(outputVideoPath)
+			.on("end", function () {
+				// Console.log("Video conversion finished");
+				// Send response when conversion finishes
+				res.status(200).json({
+					message: "Video conversion finished",
+					filename: outputFilename,
+				});
+			})
+			.on("error", function (err: Error) {
+				// Console.log("An error occurred during video conversion: " + err.message);
+				// Send error response
+				res.status(500).json({
+					message:
+						"An error occurred during video conversion: " +
+						err.message,
+				});
+			})
+			.run();
     } catch (err: any) {
       return next(err);
     }

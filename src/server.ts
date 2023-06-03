@@ -1,6 +1,7 @@
 import { APP_NAME, APP_PORT } from './config';
 import express, { Express, Request, Response } from "express";
 import http from 'http';
+import cors from "cors";
 
 import uploaderRoutes from "./routes/uploader";
 import converterRoutes from "./routes/converter";
@@ -9,6 +10,7 @@ import { chatController } from './controllers';
 import errorHandler from './middlewares/errorHandler';
 
 const app: Express = express();
+app.use(cors());
 
 
 app.get("/", (req: Request, res: Response) => {

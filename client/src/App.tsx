@@ -1,5 +1,7 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import VideoUpload from './views/VideoUpload';
+import StreamVideo from './views/StreamVideo';
 
 function App() {
   return (
@@ -7,9 +9,10 @@ function App() {
       <nav className="p-6 bg-gray-800 sticky top-0">
         <h1 className="text-2xl font-semibold">RealtimeRipple</h1>
       </nav>
-      <div className="p-6">
-        <VideoUpload />
-      </div>
+     <Routes>
+        <Route path="/" element={<VideoUpload />} />
+        <Route path="/stream" element={<StreamVideo />} />
+      </Routes>
     </div>
   );
 }

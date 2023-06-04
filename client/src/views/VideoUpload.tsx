@@ -1,6 +1,7 @@
 // src/views/VideoUpload/VideoUpload.tsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface FileResponse {
   fieldname: string;
@@ -23,6 +24,7 @@ function VideoUpload() {
   const [fileData, setFileData] = useState<FileResponse | null>(null);
   const [convertResponse, setConvertResponse] = useState<ConversionResponse | null>(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFile(event.target.files?.item(0) || null);
@@ -53,6 +55,7 @@ function VideoUpload() {
     const res = await axios.post(`${process.env.REACT_APP_HOST}/converter/convert/${fileData.filename}`);
     setConvertResponse(res.data);
     setLoading(false);
+    localStorage.setItem('convertedFilename', res.data.filename);
   };
 
   return (
@@ -91,6 +94,11 @@ function VideoUpload() {
         <div className="p-4 bg-gray-800 rounded shadow text-white w-1/2 mt-4">
           <p><strong>Message:</strong> {convertResponse.message}</p>
           <p><strong>Filename:</strong> {convertResponse.filename}</p>
+          <div className='flex justify-center items-center'>
+          <button onClick={() => navigate('/stream')} className="px-4 py-2 mt-3 text-center bg-blue-500 text-white rounded shadow">
+            Stream Now 
+          </button>
+          </div>
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import { APP_NAME, APP_PORT } from './config';
 import express, { Express, Request, Response } from "express";
 import http from 'http';
 import cors from "cors";
+import {setupVideoCleanup} from './utils/videoCleanup';
 
 import uploaderRoutes from "./routes/uploader";
 import converterRoutes from "./routes/converter";
@@ -30,5 +31,6 @@ chatController.initialiseChatServer(server);
 app.use(errorHandler)
 
 server.listen(APP_PORT, () => {
-  console.log(`Server is running in http://localhost:${APP_PORT}`)
+  console.log(`Server is running in http://localhost:${APP_PORT}`);
+  setupVideoCleanup();
 });

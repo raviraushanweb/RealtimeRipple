@@ -39,6 +39,15 @@ To stream a video, make a GET request to `/streamer/stream/{filename}` (replace 
 
 RealtimeRipple also supports real-time chat via WebSockets. Simply open a WebSocket connection to `ws://localhost:3000` and send/receive messages in real-time.
 
+## Screenshots
+[![Image1](https://i.ibb.co/G5sRDY9/Screenshot-2023-06-04-at-7-13-02-PM.png)](https://i.ibb.co/G5sRDY9/Screenshot-2023-06-04-at-7-13-02-PM.png)
+
+[![Image2](https://i.ibb.co/w427cs5/Screenshot-2023-06-04-at-7-13-40-PM.png)](https://i.ibb.co/w427cs5/Screenshot-2023-06-04-at-7-13-40-PM.png)
+
+[![Image3](https://i.ibb.co/3WTpkZQ/Screenshot-2023-06-04-at-7-13-54-PM.png)](https://i.ibb.co/3WTpkZQ/Screenshot-2023-06-04-at-7-13-54-PM.png)
+
+[![Image4](https://i.ibb.co/B4ySCdX/Screenshot-2023-06-04-at-7-14-57-PM.png)](https://i.ibb.co/B4ySCdX/Screenshot-2023-06-04-at-7-14-57-PM.png)
+
 ## Testing
 
 To test the various features of RealtimeRipple, we recommend using a REST client like Insomnia or Postman.
